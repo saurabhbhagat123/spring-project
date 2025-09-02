@@ -15,4 +15,5 @@ public class EmployeeDto {
     private String name;
     private Integer age;
     private Long salary;
+    private String department;
 }

@@ -25,4 +25,6 @@ public class Employee {
     private Integer age;
 
     private Long salary;
+
+    private String department;
 }

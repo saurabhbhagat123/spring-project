@@ -63,8 +63,8 @@ public class EmployeeController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EmployeeDto> getEmployees(@RequestParam(name = "department", required = false) String department,
-                                          @RequestParam(name = "age", required = false) String age) {
-        return employeeService.findAll();
+                                          @RequestParam(name = "age", required = false) Integer age) {
+        return employeeService.findAll(department, age);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -81,5 +81,11 @@ public class EmployeeController {
     public EmployeeDto updateEmployee(@PathVariable("id") final Long id, @RequestBody final EmployeeDto employeeDto) {
         employeeDto.setId(id);
         return employeeService.saveEmployee(employeeDto);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") final Long id) {
+        employeeService.deleteEmployee(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
